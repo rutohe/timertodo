@@ -1,0 +1,382 @@
+body{
+    background-color: slategrey;
+    color: white;
+    overflow-x: hidden;
+    font-family: "Yu Gothic", sans-serif;
+    user-select: none;
+}
+.wrapper{
+    min-height: 30%;
+    width: 100%;
+}
+.todo {
+    margin: auto;
+    width: 80%;
+}
+h1{
+    font-family: "Yu Gothic", "Hiragino Kaku Gothic Pro", "Noto Sans JP", sans-serif;
+    font-weight: 500;
+    font-size: 2em;
+    color: #f5f5f5;
+}
+.todo td{
+    font-size: 1.5em;
+    border: 1px solid #333;
+    text-align: center;
+    height: 125px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    box-sizing: border-box; /* flex でも幅とボーダーを一致させる */
+    padding: 0;
+}
+
+.todo td button{
+    border: none;
+    background: transparent;
+    
+}
+
+.todo tr td:nth-child(3) {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+.toggle-btn{
+    width: 70px;
+    height: 35px;
+    border: white solid 1px;
+    border-radius: 70px;
+    padding: 3px;
+    background: transparent;
+    transition: all .5s;
+    cursor: pointer;
+}
+.toggle-btn.active{
+    background: rgb(40, 196, 34);
+}
+.circle{
+    width: 35px;
+    height: 35px;
+    box-sizing: border-box;
+    border: white 1px solid;
+    border-radius: 50%;
+    background: transparent;
+    background-size: 200%;
+    transition: all .5s;
+}
+.circle.clicked{
+    transform: translate(35px,0);
+    background-position: 100%;
+    border: transparent 1px solid;
+    background: rgb(255, 255, 255);
+}
+
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background:black;
+    opacity: .6;
+    z-index: 9998;
+}
+.create-wrapper{
+    width: 750px;
+    height: 500px;
+    position: absolute;
+    border: white 1px solid;
+    border-radius: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.title-wrapper{
+    width: 70%;
+    height: 10%;
+    display: block;
+    margin: 5% auto;
+    border: 1px transparent solid;
+    border-radius: 50px;
+    background-color: white;
+    box-sizing: border-box;
+}
+#title{
+    width: 80%;
+    height: 100%;
+    font-size: 1em;
+    padding: 0;
+    display: block;
+    margin: 0 5%;
+    border: transparent 1px solid;
+    box-sizing: border-box;
+}
+#title:focus{
+    outline: none;
+    border: transparent;
+}
+.timer{
+    width: 100%;
+    height: 20%;
+    margin-top: 15%;
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+}
+.time-wrapper{
+    width: 20%;
+    height: 100%;
+    text-align: center;
+    font-size: 2em;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    transition: all .5s;
+    user-select: none;
+}
+.label{
+    font-size: .5em;
+    flex-grow: 1;
+}
+.time{
+    touch-action: none;
+    overflow: hidden;
+    font-size: 1.25em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; /* 均等配置 */
+    align-items: center;
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+    box-sizing: border-box;
+    height: 58%;
+}
+.time div{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;   /* 数字を中央寄せ */
+}
+.time-wrapper:hover{
+    color: rgb(80, 126, 255);
+}
+.time-wrapper:hover .time{
+    border-right: rgb(80, 126, 255) 1px solid;
+    border-left: rgb(80, 126, 255) 1px solid;
+}
+.keep-btn,.edit{
+    display: block;
+    width: 25%;
+    height: 15%;
+    background: none;
+    border: white 1px solid;
+    border-radius: 50px;
+    color: white;
+    padding: 0;
+    font-size: 1.25em;
+    margin: 15% auto 0;
+    transition: all .3s;
+}
+@keyframes keep {
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.1);
+    }
+    100%{
+        transform: scale(1.05);
+    }
+}
+.keep-btn:hover{
+    animation: keep .5s forwards;
+}
+.close-btn{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    padding: 0;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 5rem;
+    background: none;
+    border: none;
+    color: white;
+    z-index: 9999;
+}
+.create-scedule{
+    width: 4em;
+    height: 4em;
+    font-size: 1.125em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: center;
+    background: none;
+    border: 1px rgb(0, 0, 0) solid;
+    border-radius: 5em;
+    transition: width .5s ,background-color .5s;
+    user-select: none;
+    margin: 5% 0 0 85%;
+}
+.create-scedule:hover{
+    width: 9em;
+    background-color: green; 
+}
+.create-scedule:hover .non-hover{
+    display: none;
+}
+.create-scedule:hover .on-hover{
+    display: inline;
+}
+.on-hover{
+    display: none;
+    color: white;
+}
+.option-wrapper{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    transform: translate(100%,0);
+    background-color: gray;
+    transition: transform .5s;
+}
+.open-option{
+    width: 5em;
+    height: 5em;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    top: 3em;
+    right: 3em;
+    z-index: 9997;
+    padding: 0;
+    box-sizing: border-box;
+    transition: transform 5s;
+}
+.open-option:hover{
+    transform: rotate(360deg);
+}
+
+.open-option svg{
+    width: 100%;
+    height: 100%;
+}
+.option-area{
+    width: 70%;
+    height: 70%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border: black 1px solid;
+    border-radius: 10px;
+    padding: 5%;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.option-area::before{
+    content: "option";
+    position: absolute;
+    top: -1em;
+    left: 50%;
+    transform: translate(-50%,0);
+    width: 5em;
+    text-align: center;
+    font-size: 2em;
+    background-color: gray;
+}
+.option-name{
+    flex-grow: 1;
+    padding: 0 2em;
+    font-size: 1.25em;
+}
+
+.options{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1em;
+    border-bottom: white 1.5px solid;
+}   
+.option-detail{
+    max-height: 0;
+    overflow: hidden;
+    margin-left: 3em;
+    font-size: 1em;
+    transition: max-height .5s;
+}
+.no-select{
+    filter: brightness(.6);
+    pointer-events: none;
+}
+
+.option-name:hover .option-detail{
+    max-height: 2.5em;
+}
+.option-detail input{
+    width: 3.5em;
+    height: 2em;
+    font-size: 1em;
+    text-align: center;
+    margin-left: 3em;
+    background-color: transparent;
+    border: 1px white solid;
+    border-radius: .5em;
+    color: white;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox 対応 */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+input{
+    caret-color: black;
+}
+input:focus {
+    outline: none;       /* デフォルトの黒枠を消す */
+    border: 1px solid black; /* 好きな色で代わりに枠を付ける例 */
+    color: black;
+}
+.file-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25em 0.5em;
+    margin-left: 1.5em;    
+    background-color: transparent;
+    border: 1px white solid;
+    color: white;
+    border-radius: 0.5em;
+    cursor: pointer;
+    font-size: 0.9em;
+    gap: 0.25em; /* アイコンと文字の間 */
+    transition: background-color .5s,border .5s;
+    box-sizing: border-box;
+}
+.file-label:hover {
+    border: transparent 1px solid;
+    background-color: #444;
+}
+.nodisplay{
+
+    display: none;
+}

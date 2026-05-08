@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <h1>タイマー付きToDoリスト</h1>
+    <div class="wrapper">
+        <table class="todo">
+            <colgroup>
+                <col style="width:40%;">
+                <col style="width:auto;">
+                <col style="width:35%;">
+            </colgroup>
+            <tr>
+                <td class="head" style="height: 75px;">scedule</td>
+                <td class="head" style="height: 75px;">time</td>
+                <td class="head" style="height: 75px;">option</td>
+            </tr>
+        </table>
+    </div>
+    <button class="create-scedule">
+        <span class="non-hover" aria-label="予定を作成">📅＋</span>
+        <span class="on-hover">予定を作成</span>
+    </button>
+    
+
+
+
+
+    <button class="open-option">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+    </button>
+    <div class="option-wrapper">
+        <div class="option-area">
+            <div class="options">
+                <!-- input以外にもファイル指定とかやってみたいから、ボタンor詳細表示の文字にクリックイベント付けて、modalひらいてよろ -->
+                <div class="option-name">
+                    タイマー終了時、音で通知する
+                    <div class="option-detail no-select">アラーム継続時間<input type="number" class="play-time" value="1">秒<label for="add-file" class="file-label">アラーム音声選択</label><input type="file" accept="audio/*" id="add-file" style="display:  none;"></div>
+                </div>               
+                <div class="toggle-btn sound">
+                    <div class="circle"></div>
+                </div>
+            </div>
+            <div class="options">
+                <div class="option-name">タイマー終了時、自動的に完了チェックする</div>
+                <div class="toggle-btn auto-check">
+                    <div class="circle"></div>
+                </div>
+            </div>
+            <div class="options">
+                <div class="option-name">
+                    タイマー終了時、同じタイマーを再度起動する
+                    <div class="option-detail no-select">タイマー終了から再起動までのインターバル<input type="number" class="restartInterval" value="1">秒</div>
+                </div>
+                <div class="toggle-btn restart-timer">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal nodisplay">
+        <div class="create-wrapper">
+            <div class="title-wrapper">
+                <input type="text" placeholder="タイトル" id="title">
+            </div>
+            <div class="timer">
+                <div class="time-wrapper">
+                    <div class="label">hour</div>
+                    <div id="hour" class="time" data-role="hour"></div>    
+                </div>
+                <div class="time-wrapper">
+                    <div class="label">min</div>
+                    <div id="minute" class="time" data-role="minute"></div>    
+                </div>
+                <div class="time-wrapper">
+                    <div class="label">sec</div>
+                    <div id="sec" class="time" data-role="second"></div>    
+                </div>
+            </div>
+            <button class="submit-btn keep-btn">add scedule</button>
+        </div>
+    </div>
+</body>
+</html>

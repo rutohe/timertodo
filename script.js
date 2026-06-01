@@ -3,7 +3,7 @@
 //編集後のリセットの挙動がおかしい
 let transitionSecond = 0.1; //s
 
-let audio = new Audio("./sansf_Megalovania.mp3");
+let audio = new Audio(".mp3");//アラーム音
 
 
 const toggle = document.querySelectorAll('.toggle-btn');
